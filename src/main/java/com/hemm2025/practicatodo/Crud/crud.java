@@ -5,10 +5,12 @@
 package com.hemm2025.practicatodo.Crud;
 
 import com.hemm2025.practicatodo.modelos.Tareas;
+import com.hemm2025.practicatodo.modelos.Usuarios;
 import com.hemm2025.practicatodo.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -81,5 +83,26 @@ public class crud {
             System.out.println(e.getMessage());
         }
         return tarea;
+    }
+
+    public Usuarios getUsuario(String correo, String pass) {
+        Usuarios usuario = null;
+        Session sesion = HibernateUtil.getSesionFactory().openSession();
+        try {
+            String hql = "FROM Usuarios WHERE correo = :correo AND pass = :pass";
+            Query<Usuarios> query = sesion.createQuery(hql,Usuarios.class);
+            
+            query.setParameter("correo", correo);
+            query.setParameter("pass", pass);
+            
+            usuario = query.uniqueResult();
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }finally{
+        sesion.close();
+        }
+        return usuario;
     }
 }

@@ -15,3 +15,6 @@
     </div>
     <input class="btn btn-primary btn-sm" type="submit" value="PROCESAR" />
 </form>
+    
+    <form action="dfgdfg" method="POST">
+    </form> 

@@ -14,7 +14,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="com.hemm2025.practicatodo.modelos.Tareas"/>
-
+        <mapping class="com.hemm2025.practicatodo.modelos.Usuarios"/>
     </session-factory>
 </hibernate-configuration>
 
