@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Administrator
  */
-@WebServlet(name = "ToDoActualizarServlet", urlPatterns = {"/ToDoActualizarServlet"})
+@WebServlet(name = "ToDoActualizarServlet", urlPatterns = {"/ToDoActualizarServlet.do"})
 public class ToDoActualizarServlet extends HttpServlet {
 
     /**

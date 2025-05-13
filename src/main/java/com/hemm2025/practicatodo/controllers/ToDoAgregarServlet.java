@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Administrator
  */
-@WebServlet(name = "ToDoAgregarServlet", urlPatterns = {"/ToDoAgregarServlet"})
+@WebServlet(name = "ToDoAgregarServlet", urlPatterns = {"/ToDoAgregarServlet.do"})
 public class ToDoAgregarServlet extends HttpServlet {
 
     /**
@@ -84,14 +84,14 @@ public class ToDoAgregarServlet extends HttpServlet {
         if (id == 0) {
             Tareas tarea = new Tareas(descripcion, completada);
             if (crud.agregarToDo(tarea)) {
-                response.sendRedirect("ToDoListServlet");
+                response.sendRedirect("ToDoListServlet.do");
             } else {
                 response.sendRedirect("paginas/error.jsp");
             }
         } else {
             Tareas t = new Tareas(id, descripcion, completada);
             if (crud.actualizarToDo(t)) {
-                response.sendRedirect("ToDoListServlet");
+                response.sendRedirect("ToDoListServlet.do");
             } else {
                 response.sendRedirect("paginas/error.jsp");
             }

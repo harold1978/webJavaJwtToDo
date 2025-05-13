@@ -65,7 +65,11 @@ public class LoginServlet extends HttpServlet {
         int exit = Integer.parseInt(request.getParameter("exit"));
 
         if (exit == 1) {
-
+            String authHeader = request.getHeader("Authorization");
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                String token = authHeader.substring(7);
+        
+            }
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -74,8 +78,10 @@ public class LoginServlet extends HttpServlet {
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
+
             }
             // Redirigir al usuario al login
+            request.getSession().invalidate();
             response.sendRedirect("login/login.jsp");
         }
 
@@ -115,7 +121,7 @@ public class LoginServlet extends HttpServlet {
             response.setHeader("Authorization", "Bearer " + token);
             // O redirige a una JSP y almacena el token en sesión o cookie
             request.getSession().setAttribute("jwt", token);
-            response.sendRedirect("ToDoListServlet");
+            response.sendRedirect("ToDoListServlet.do");
         } else {
             request.setAttribute("error", 1);
             request.getRequestDispatcher("login/login.jsp").forward(request, response);

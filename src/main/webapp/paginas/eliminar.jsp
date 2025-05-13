@@ -17,7 +17,7 @@
         <div class="container">
         <jsp:include page="nav.jsp"/>
         <h1>ELIMINAR LA TAREA: </h1>
-        <form action="ToDoEliminarServlet" method="POST">
+        <form action="ToDoEliminarServlet.do" method="POST">
             <label class="form-label" for="id">${todo.getId()}</label>
             <input hidden="true" type="text" name="id" value="${todo.getId()}" />
             <label class="form-label" for="nombre">${todo.getDescripcion()}</label>

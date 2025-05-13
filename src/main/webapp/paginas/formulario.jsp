@@ -1,5 +1,5 @@
 
-<form action="ToDoAgregarServlet" method="POST">
+<form action="ToDoAgregarServlet.do" method="POST">
   
     <div class="mb-3">
     <label for="id" class="form-label">ID</label>

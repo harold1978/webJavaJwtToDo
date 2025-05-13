@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/"})  // Aquí defines la ruta protegida
+@WebFilter(urlPatterns = {"*.do"})  // Aquí defines la ruta protegida
 public class filtrarRuta implements Filter {
 
     @Override
@@ -21,14 +21,15 @@ public class filtrarRuta implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        
-        
         String token = (String) req.getSession().getAttribute("jwt");
-        if (token != null && JwtUtil.validateToken(token)) {
-            chain.doFilter(request, response); // acceso permitido
-        } else {
-            res.sendRedirect(req.getContextPath() + "/login/login.jsp"); // o devolver error 401
-        }
+
+            if (token != null && JwtUtil.validateToken(token)) {
+                chain.doFilter(request, response); // acceso permitido
+            } else {
+                res.sendRedirect(req.getContextPath() + "/login/login.jsp"); // o devolver error 401
+            }
+ 
+
     }
 
     @Override

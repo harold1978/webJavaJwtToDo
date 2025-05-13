@@ -12,7 +12,7 @@
         <div class="container">
             <jsp:include page="nav.jsp"/>
             <h1>TAREAS</h1>
-            <a class="btn btn-primary btn-sm" href="ToDoAgregarServlet">NUEVA TAREA</a>
+            <a class="btn btn-primary btn-sm" href="ToDoAgregarServlet.do">NUEVA TAREA</a>
             <h2>LISTADO DE TAREAS</h2>
             <div class="table-responsive">
                 <table class="table table-sm table-hover table-borderless table-primary align-middle">
@@ -31,8 +31,8 @@
                                 <td>${item.getDescripcion()}</td>
                                 <td>${item.getCompletada()}</td>
                                 <td>
-                                    <a class="btn btn-secondary btn-sm" href="ToDoActualizarServlet?id=${item.getId()}">ACTUALIZAR</a>
-                                    <a class="btn btn-danger btn-sm" href="ToDoEliminarServlet?id=${item.getId()}">ELIMINAR</a>
+                                    <a class="btn btn-secondary btn-sm" href="ToDoActualizarServlet.do?id=${item.getId()}">ACTUALIZAR</a>
+                                    <a class="btn btn-danger btn-sm" href="ToDoEliminarServlet.do?id=${item.getId()}">ELIMINAR</a>
                                 </td>
                             </tr>
                         </c:forEach>

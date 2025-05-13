@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Administrator
  */
-@WebServlet(name = "ToDoEliminarServlet", urlPatterns = {"/ToDoEliminarServlet"})
+@WebServlet(name = "ToDoEliminarServlet", urlPatterns = {"/ToDoEliminarServlet.do"})
 public class ToDoEliminarServlet extends HttpServlet {
 
     /**
@@ -81,7 +81,7 @@ public class ToDoEliminarServlet extends HttpServlet {
         int id = request.getParameter("id").isEmpty() ? 0 : Integer.parseInt(request.getParameter("id"));
         crud crud = new crud();
         if(crud.eliminarToDo(id)){
-            response.sendRedirect("ToDoListServlet");
+            response.sendRedirect("ToDoListServlet.do");
         }else{
             response.sendRedirect("paginas/error.jsp");
         }

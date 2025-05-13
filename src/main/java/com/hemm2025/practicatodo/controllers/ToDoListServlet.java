@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author Administrator
  */
-@WebServlet(name = "ToDoListServlet", urlPatterns = {"/ToDoListServlet"})
+@WebServlet(name = "ToDoListServlet", urlPatterns = {"/ToDoListServlet.do"})
 public class ToDoListServlet extends HttpServlet {
 
     /**
