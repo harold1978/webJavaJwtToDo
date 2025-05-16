@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active btn-primary" aria-current="page" href="LoginServlet?exit=1"> <strong><c:out value="${correoUsuario}" default="Usuario"/></strong></a>
+                    <a class="nav-link active btn-primary" aria-current="page" href="LoginServlet"> <strong><c:out value="${correoUsuario}" default="Usuario"/></strong></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="ToDoListServlet">Listado</a>

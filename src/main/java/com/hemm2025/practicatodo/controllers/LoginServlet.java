@@ -62,13 +62,11 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Invalidar la cookie que contiene el token JWT
-        int exit = Integer.parseInt(request.getParameter("exit"));
-
-        if (exit == 1) {
+         
             String authHeader = request.getHeader("Authorization");
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
                 String token = authHeader.substring(7);
-        
+     
             }
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
@@ -78,12 +76,11 @@ public class LoginServlet extends HttpServlet {
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
-
             }
             // Redirigir al usuario al login
             request.getSession().invalidate();
-            response.sendRedirect("login/login.jsp");
-        }
+            request.getRequestDispatcher("login/login.jsp").forward(request, response);
+        
 
     }
 
@@ -100,11 +97,13 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String correo = request.getParameter("correo");
         String clave = request.getParameter("pass");
-
+        crud crud = new crud();
+        
         // Verifica el usuario en la BD con Hibernate
-        boolean usuario = validarUsuario(correo, clave);
-        if (usuario) {
-            String token = JwtUtil.generateToken(correo);
+        boolean validado = validarUsuario(correo, clave);
+        if (validado) {
+            Usuarios usuario = crud.getUsuario(correo, clave); //obtener usuario de db
+            String token = JwtUtil.generateToken(correo,usuario.getRol()); //generar el token con correo y roll
             String corre = JwtUtil.obtenerCorreo(token);
             // Guardamos el token en una cookie
             Cookie correoCookie = new Cookie("correo", corre);
@@ -124,7 +123,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("ToDoListServlet.do");
         } else {
             request.setAttribute("error", 1);
-            request.getRequestDispatcher("login/login.jsp").forward(request, response);
+            request.getRequestDispatcher("paginas/login/login.jsp").forward(request, response);
 
         }
     }
@@ -143,7 +142,6 @@ public class LoginServlet extends HttpServlet {
         crud crud = new crud();
         Usuarios u = crud.getUsuario(correo, clave);
         return u != null;
-
     }
 
 }

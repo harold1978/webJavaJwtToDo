@@ -17,11 +17,12 @@ public class JwtUtil {
     private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private static final long EXPIRATION_TIME = 86400000; // 1 día en ms
 
-    public static String generateToken(String username) {
+    public static String generateToken(String username,String roll) {
 
         Map<String, Object> claims = new HashMap<>();
 
         claims.put("correo", username);
+        claims.put("roll", roll);
 
         return Jwts.builder()
                 .setClaims(claims)
